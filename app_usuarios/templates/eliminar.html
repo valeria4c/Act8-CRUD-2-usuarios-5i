@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Usuario</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f4f4f4; text-align: center; }
+        h1 { color: #333; }
+        form { display: inline-block; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
+        button, a.cancelar {
+            padding: 10px 18px;
+            border-radius: 6px;
+            color: #fff;
+            text-decoration: none;
+            margin-right: 10px; /* espacio entre botones */
+            display: inline-block;
+        }
+        button { background: #5a6ab9ff; border: none; cursor: pointer; }
+        a.cancelar { background: #6c757d; }
+    </style>
+</head>
+<body>
+    <h1>¿Seguro que deseas eliminar a "{{ usuario.nombre }} {{ usuario.apellido }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+        <a href="{% url 'lista_usuarios' %}" class="cancelar">Cancelar</a>
+    </form>
+</body>
+</html>

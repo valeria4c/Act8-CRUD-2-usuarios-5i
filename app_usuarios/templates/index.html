@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Usuarios</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f4f4f4; }
+        h1 { color: #333; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+        th { background-color: #afafafff; color: #fff; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        a.button {
+            padding: 6px 12px;
+            margin: 0 5px 5px 0; /* margen para separar botones */
+            border-radius: 4px;
+            color: #fff;
+            text-decoration: none;
+            display: inline-block;
+        }
+        a.crear { background-color: #28a745; }
+        a.editar { background-color: #69ce8cff; }
+        a.eliminar { background-color: #647dcdff; }
+    </style>
+</head>
+<body>
+    <h1>Usuarios de la tienda SPA</h1>
+    <a href="{% url 'crear_usuario' %}" class="button crear">Crear Usuario</a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Password Hash</th>
+            <th>Fecha Registro</th>
+            <th>Última Conexión</th>
+            <th>Acciones</th>
+        </tr>
+        {% for u in usuarios %}
+        <tr>
+            <td>{{ u.id_usuario }}</td>
+            <td>{{ u.nombre }}</td>
+            <td>{{ u.apellido }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.password_hash }}</td>
+            <td>{{ u.fecha_registro }}</td>
+            <td>{{ u.ultima_conexion }}</td>
+            <td>
+                <a href="{% url 'editar_usuario' u.id_usuario %}" class="button editar">Editar</a>
+                <a href="{% url 'eliminar_usuario' u.id_usuario %}" class="button eliminar">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
